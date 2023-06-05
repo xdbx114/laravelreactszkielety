@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Laravel",
+    "\\Laravel\\app",
+    "\\Laravel\\app\\Http",
+    "\\Laravel\\app\\Http\\Middleware",
+    "\\Laravel\\database",
+    "\\Laravel\\database\\factories",
+    "\\Laravel\\database\\migrations",
+    "\\Laravel\\routes",
+    "\\Laravel\\storage"
+  ],
+  "SelectedNode": "\\Laravel\\routes\\api.php",
+  "PreviewInSolutionExplorer": false
+}
