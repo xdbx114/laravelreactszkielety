@@ -12,7 +12,7 @@ class WpisController extends Controller
         $credentials = request(['tytul', 'tresc','user_id']);
         Wpis::create($credentials);
 
-        return response()->json('success');
+        return response()->json('successss');
     }
 
     public function update(Request $request, $id)
