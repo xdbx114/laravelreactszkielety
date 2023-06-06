@@ -8,6 +8,7 @@ import Users from '../components/users';
 import AuthUser from '../components/AuthUser';
 import Addwpis from "../components/addwpis";
 import Editwpis from "../components/editwpis";
+import Wpis from "../components/wpis";
 function Auth() {
     const {token,logout, getUserNickById, user} = AuthUser();
     const logoutUser = () => {
@@ -39,6 +40,7 @@ function Auth() {
                     <Route path="/users" element={<Users />} />
                     <Route path="/addwpis" element={<Addwpis />} />
                     <Route path="/edit/:id" element={<Editwpis />} />
+                    <Route path="/wpis" element={<Wpis />} />
                 </Routes>
                 <ToastContainer 
                 position="bottom-right"
