@@ -7,7 +7,7 @@ import AuthUser from '../components/AuthUser';
 import Addwpis from "../components/addwpis";
 import Editwpis from "../components/editwpis";
 function Auth() {
-    const {token,logout} = AuthUser();
+    const {token,logout, getUserNickById, user} = AuthUser();
     const logoutUser = () => {
         if(token != undefined){
             logout();
@@ -16,7 +16,7 @@ function Auth() {
     return (
         <>
             <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
-                <ul className="navbar-nav">
+                <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
                         <Link className="nav-link" to="/">Strona glowna</Link>
                     </li>
@@ -26,12 +26,13 @@ function Auth() {
                     <li className="nav-item">
                         <span role="button" className="nav-link" onClick={logoutUser}>Wyloguj sie</span>
                     </li>
-
+                    <span class="navbar-text ">
+                    | Zalogowano: <b>{getUserNickById(user.id)}</b>
+                    </span>
                 </ul>
             </nav>
             <div className="container">
                 <Routes>
-                    <Route path="/" element={<Home />} />
                     <Route path="/" element={<Home />} />
                     <Route path="/users" element={<Users />} />
                     <Route path="/addwpis" element={<Addwpis />} />
