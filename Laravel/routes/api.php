@@ -28,6 +28,7 @@ Route::group(['middleware'=>'api'],function(){
     Route::get('wpisy', [AuthController::class, 'wpisy']);
     Route::post('wpisy', [WpisController::class, 'store']);
     Route::put('wpisy/{id}', [WpisController::class, 'update']);
+    Route::delete('/wpisy/{id}', [WpisController::class, 'destroy']);
     Route::put('users/{id}', [AuthController::class, 'update']);
     Route::post('logout', [AuthController::class,'logout']);
     Route::post('refresh', [AuthController::class,'refresh']);

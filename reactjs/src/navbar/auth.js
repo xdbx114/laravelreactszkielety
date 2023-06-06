@@ -3,7 +3,6 @@ import { Routes, Route, Link} from 'react-router-dom';
 import "../App.css";
 import Home from '../components/home';
 import Users from '../components/users';
-import Edit from '../components/edit';
 import AuthUser from '../components/AuthUser';
 import Addwpis from "../components/addwpis";
 import Editwpis from "../components/editwpis";
@@ -33,8 +32,8 @@ function Auth() {
             <div className="container">
                 <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/" element={<Home />} />
                     <Route path="/users" element={<Users />} />
-                    <Route path="/edit" element={<Edit />} />
                     <Route path="/addwpis" element={<Addwpis />} />
                     <Route path="/edit/:id" element={<Editwpis />} />
                 </Routes>

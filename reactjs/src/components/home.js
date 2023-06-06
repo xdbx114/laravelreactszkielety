@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import AuthUser from './AuthUser';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function AddWpis() {
-  const { wpisy, fetchPosts, fetchUsers, getUserNickById } = AuthUser();
+  const { wpisy, fetchPosts, fetchUsers, getUserNickById, http } = AuthUser();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -13,6 +13,15 @@ export default function AddWpis() {
 
   const handleEdit = (id) => {
     navigate(`/edit/${id}`);
+  };
+
+  const handleDelete = async (wpisId) => {
+    try {
+      await http.delete(`/wpisy/${wpisId}`);
+      fetchPosts();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -47,9 +56,12 @@ export default function AddWpis() {
                   >
                     Edytuj
                   </button>
-                  <a href="#" className="btn btn-danger">
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => handleDelete(wpis.id)}
+                  >
                     Usuń
-                  </a>
+                  </button>
                   <a href="#" className="btn btn-info">
                     Komentarze (0)
                   </a>

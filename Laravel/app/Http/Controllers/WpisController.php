@@ -33,4 +33,17 @@ class WpisController extends Controller
 
         return response()->json($wpis);
     }
+
+    public function destroy($id)
+    {
+        $wpis = Wpis::find($id);
+
+        if (!$wpis) {
+            return response()->json(['error' => 'Wpis not found'], 404);
+        }
+
+        $wpis->delete();
+
+        return response()->json('success');
+    }
 }
