@@ -1,24 +1,29 @@
-import { useState } from "react"
+import { useState } from "react";
+import {toast} from 'react-toastify';
 import AuthUser from './AuthUser';
 
 export default function Login() {
     const {http,setToken} = AuthUser();
     const [email,setEmail] = useState();
     const [password,setPassword] = useState();
-    const [showSuccessAlert, setShowSuccessAlert] = useState(false);
-    const [showErrorAlert, setShowErrorAlert] = useState(false);
+
+    const notifyloginok = () => {
+        toast.success('Zalogowano pomyślnie!', { autoClose: 5000 });
+      };
+    
+    const notifyloginerror = () => {
+        toast.error('Niepoprawne dane logowania!', { autoClose: 5000 });
+      };
 
     const submitForm = () => {
         // api call
         http.post('/login', { email: email, password: password })
           .then((res) => {
             setToken(res.data.user, res.data.access_token);
-            setShowSuccessAlert(true);
-            setShowErrorAlert(false);
+            notifyloginok();
           })
           .catch(() => {
-            setShowSuccessAlert(false);
-            setShowErrorAlert(true);
+            notifyloginerror();
           });
       }
 
@@ -27,16 +32,6 @@ export default function Login() {
             <div className="col-sm-6">
                 <div className="card p-4">
                     <h1 className="text-center mb-3">Zaloguj sie </h1>
-                    {showSuccessAlert && (
-                        <div className="alert alert-success" role="alert">
-                        Logowanie udane!
-                        </div>
-                    )}
-                    {showErrorAlert && (
-                        <div className="alert alert-danger" role="alert">
-                        Nieprawidłowe dane logowania!
-                        </div>
-                    )}
                     <div className="form-group">
                         <label>Adres email:</label>
                         <input type="email" className="form-control" placeholder="Podaj email"

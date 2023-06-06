@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
+import {toast} from 'react-toastify';
 import axios from 'axios';
 import AuthUser from './AuthUser';
+import { useNavigate } from 'react-router-dom';
 
 export default function Addwpis() {
   const { user } = AuthUser(); // Pobierz użytkownika z kontekstu autoryzacji
 
   const [tytul, setTytul] = useState('');
   const [tresc, setTresc] = useState('');
-  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+  const navigate = useNavigate();
+
+  const notifyadd = () => {
+    toast.success('Pomyślnie dodano wpis!', { autoClose: 5000 });
+  };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -30,7 +36,8 @@ export default function Addwpis() {
       });
 
       console.log(response.data);
-      setShowSuccessAlert(true);
+      notifyadd();
+      navigate('/');
     } catch (error) {
       console.error(error);
     }
@@ -41,11 +48,6 @@ export default function Addwpis() {
        <div class="container">
     <center><h1 class="mt-4 mb-4">Dodaj Wpis</h1></center>
     <div className="col-md-8 offset-md-2">
-    {showSuccessAlert && (
-                        <div className="alert alert-success" role="alert">
-                        Dodano wpis!
-                        </div>
-                    )}
     <form onSubmit={handleSubmit}>
       <div class="form-group">
         <label for="tytul">Tytuł:</label>

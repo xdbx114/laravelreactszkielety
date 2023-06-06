@@ -1,4 +1,5 @@
 import React, { useEffect, useState} from 'react';
+import {toast} from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import AuthUser from './AuthUser';
 
@@ -11,6 +12,10 @@ export default function EditWpis({ match }) {
   const [tresc, setTresc] = useState('');
   const [userId, setUserId] = useState('');
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+
+  const notify = () => {
+    toast.success('Pomyślnie edytowano wpis!', { autoClose: 5000 });
+  };
 
   useEffect(() => {
     fetchPosts();
@@ -34,8 +39,7 @@ export default function EditWpis({ match }) {
         tresc: tresc,
         user_id: user.id,
       });
-      console.log('Wpis został zaktualizowany:', response.data);
-      setShowSuccessAlert(true);
+      notify();
     } catch (error) {
       console.error(error);
     }

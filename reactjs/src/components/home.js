@@ -1,11 +1,15 @@
 import React, { useEffect, useState} from 'react';
+import {toast} from 'react-toastify';
 import AuthUser from './AuthUser';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function AddWpis() {
   const { wpisy, fetchPosts, fetchUsers, getUserNickById, http } = AuthUser();
   const navigate = useNavigate();
-  const [notification, setNotification] = useState(null);
+
+  const notify = () => {
+    toast.success('Pomyślnie usunięto wpis!', { autoClose: 5000 });
+  };
 
   useEffect(() => {
     fetchPosts();
@@ -20,11 +24,7 @@ export default function AddWpis() {
     try {
       await http.delete(`/wpisy/${wpisId}`);
       fetchPosts();
-      setNotification(`Wpis(ID: ${wpisId}) został pomyślnie usunięty.`);
-
-      setTimeout(() => {
-        setNotification(null);
-      }, 5000);
+      notify();
     } catch (error) {
       console.error(error);
     }
@@ -32,18 +32,12 @@ export default function AddWpis() {
 
   return (
     <div>
-      <div className="container">
         <center>
           <h1 className="mt-4 mb-4">Posty</h1>
         </center>
         <div className="row">
           <div className="col-md-8 offset-md-2">
             <center>
-            {notification && (
-              <div className="alert alert-success" role="alert">
-                {notification}
-              </div>
-            )}
               <Link to="/addwpis" className="btn btn-success">
                 Dodaj post
               </Link>
@@ -81,7 +75,6 @@ export default function AddWpis() {
             ))}
           </div>
         </div>
-      </div>
     </div>
   );
 }

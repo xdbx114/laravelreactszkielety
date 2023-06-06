@@ -1,4 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Routes, Route, Link} from 'react-router-dom';
 import "../App.css";
 import Home from '../components/home';
@@ -38,6 +40,18 @@ function Auth() {
                     <Route path="/addwpis" element={<Addwpis />} />
                     <Route path="/edit/:id" element={<Editwpis />} />
                 </Routes>
+                <ToastContainer 
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+                />
             </div>
         </>
     );
