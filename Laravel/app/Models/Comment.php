@@ -5,21 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Wpis;
 
-class Wpis extends Model
+class Comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['tytul', 'tresc' ,'user_id'];
+    protected $fillable = ['content', 'user_id', 'wpis_id'];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function comments()
+    public function wpis()
     {
-        return $this->hasMany(Comment::class);
+        return $this->belongsTo(Wpis::class);
     }
-
 }

@@ -67,9 +67,12 @@ export default function AddWpis() {
                   >
                     Usuń
                   </button>
-                  <a href="#" className="btn btn-info">
-                    Komentarze (0)
-                  </a>
+                  <button
+                    className="btn btn-info"
+                    onClick={() => navigate(`/wpis/${wpis.id}`)}
+                  >
+                    Komentarze
+                  </button>
                 </div>
               </div>
             ))}

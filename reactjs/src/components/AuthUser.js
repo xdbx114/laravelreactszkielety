@@ -21,6 +21,7 @@ export default function AuthUser() {
   const [user, setUser] = useState(getUser());
   const [users, setUsers] = useState([]);
   const [wpisy, setPosts] = useState([]);
+  const [komentarze, setKomentarze] = useState([]);
 
   const saveToken = (user, token) => {
     sessionStorage.setItem('token', JSON.stringify(token));
@@ -62,6 +63,15 @@ export default function AuthUser() {
     }
   };
 
+  const fetchComments = async (wpisId) => {
+    try {
+      const response = await http.get(`/commentsget/${wpisId}`);
+      setKomentarze(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const getUserNickById = (userId) => {
     const user = users.find((user) => user.id === userId);
     return user ? user.name : '';
@@ -85,5 +95,7 @@ export default function AuthUser() {
     fetchUsers,
     fetchPosts,
     getUserNickById,
+    fetchComments,
+    komentarze
   };
 }

@@ -40,7 +40,7 @@ function Auth() {
                     <Route path="/users" element={<Users />} />
                     <Route path="/addwpis" element={<Addwpis />} />
                     <Route path="/edit/:id" element={<Editwpis />} />
-                    <Route path="/wpis" element={<Wpis />} />
+                    <Route path="/wpis/:id" element={<Wpis />} />
                 </Routes>
                 <ToastContainer 
                 position="bottom-right"

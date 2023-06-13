@@ -15,6 +15,12 @@ class WpisController extends Controller
         return response()->json('successss');
     }
 
+    public function wpisy()
+    {
+        $wpisy = Wpis::all();
+        return response()->json($wpisy);
+    }
+
     public function update(Request $request, $id)
     {
         $wpis = Wpis::find($id);
