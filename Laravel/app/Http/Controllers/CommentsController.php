@@ -7,10 +7,15 @@ use App\Models\Comment;
 
 class CommentsController extends Controller
 {
-    public function store()
+    public function store(Request $request)
     {
-        $credentials = request(['content', 'user_id', 'wpis_id']);
-        Comment::create($credentials);
+        $validatedData = $request->validate([
+            'content' => 'required',
+            'user_id' => 'required|exists:users,id',
+            'wpis_id' => 'required|exists:wpis,id',
+        ]);
+
+        Comment::create($validatedData);
 
         return response()->json('success');
     }

@@ -47,7 +47,7 @@ export default function AddWpis() {
         <br></br>
         <div className="row">
           <div className="col-md-8 offset-md-2">
-            {wpisy.map((wpis) => (
+            {wpisy.sort((a, b) => b.id - a.id).map((wpis) => (
               <div className="card mb-4" key={wpis.id}>
                 <div className="card-body">
                   <h5 className="card-title">{wpis.tytul} | ID:{wpis.id}</h5>
@@ -55,6 +55,7 @@ export default function AddWpis() {
                   {getUserNickById(wpis.user_id)} | ID:{wpis.user_id}
                   </h6>
                   <p className="card-text">{wpis.tresc}</p>
+                  <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                   <button
                     className="btn btn-primary"
                     onClick={() => handleEdit(wpis.id)}
@@ -73,6 +74,7 @@ export default function AddWpis() {
                   >
                     Komentarze
                   </button>
+                  </div>
                 </div>
               </div>
             ))}

@@ -13,9 +13,8 @@ export default function Users() {
       <thead>
         <tr>
           <th>ID</th>
-          <th>Name</th>
+          <th>Nick</th>
           <th>Email</th>
-          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -24,14 +23,6 @@ export default function Users() {
             <td>{user.id}</td>
             <td>{user.name}</td>
             <td>{user.email}</td>
-            <td>
-              <button className="btn btn-danger">
-                Usuń
-              </button>
-              <button className="btn btn-primary">
-                Edytuj
-              </button>
-            </td>
           </tr>
         ))}
       </tbody>
